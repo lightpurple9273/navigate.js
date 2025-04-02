@@ -57,6 +57,10 @@ const tools = {
     farewell(name) {
         console.log(`Goodbye, ${name}!`);
     },  
+
+    greetFullname(firstname,lastname){
+    console.log(`Hello, ${firstName} ${lastName}!`);
+    },
     
     greet(name) {
         console.log(`Hello, ${name}!`);
