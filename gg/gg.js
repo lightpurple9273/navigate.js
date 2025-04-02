@@ -5,7 +5,7 @@ const tools = {
     farewell(name) {
         console.log(`Goodbye, ${name}!`);
     },  
-    ClickChallengeButton{
+    ClickChallengeButton(){
         const challengeRadioButton = document.querySelector('[data-qa="game-type-challenge"] input[type="radio"]');
         if (challengeRadioButton) {
             challengeRadioButton.click();
