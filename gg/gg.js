@@ -1,4 +1,4 @@
-const gg = {
+const tools = {
     greet(name) {
         console.log(`Hello, ${name}!`);
     },
