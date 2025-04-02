@@ -1,11 +1,11 @@
 const tools = {
-    greet(name) {
-        console.log(`Hello, ${name}!`);
+
+    turnDefaultSettingToggleOff() {
+        const checkbox = document.querySelector('.toggle_toggle__qfXpL');
+          if (checkbox && checkbox.checked) {
+                checkbox.checked = false; // Uncheck the checkbox if it's checked
+          }
     },
-    
-    farewell(name) {
-        console.log(`Goodbye, ${name}!`);
-    },  
     
     clickChallengeButton(){
         const challengeRadioButton = document.querySelector('[data-qa="game-type-challenge"] input[type="radio"]');
@@ -17,12 +17,12 @@ const tools = {
         }
     },
 
-    turnDefaultSettingToggleOff() {
-        const checkbox = document.querySelector('.toggle_toggle__qfXpL');
-          if (checkbox && checkbox.checked) {
-                checkbox.checked = false; // Uncheck the checkbox if it's checked
-          }
-    },
-
+    farewell(name) {
+        console.log(`Goodbye, ${name}!`);
+    },  
+    
+    greet(name) {
+        console.log(`Hello, ${name}!`);
+    }
   
 };
