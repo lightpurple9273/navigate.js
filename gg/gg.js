@@ -3,7 +3,7 @@ const tools = {
     turnDefaultSettingToggleOff() {
         const checkbox = document.querySelector('.toggle_toggle__qfXpL');
           if (checkbox && checkbox.checked) {
-                checkbox.checked = false; // Uncheck the checkbox if it's checked
+            checkbox.click(); // Simulate a user click to toggle it off
           }
     },
     
