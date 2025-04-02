@@ -1,24 +1,17 @@
 const tools = {
-
-  setRoundTime(target_sec) {
+moveSliderMax() {
   const slider = document.querySelector('.styles_rangeslider__8vVg3');
   const handle = slider?.querySelector('.styles_handle__h9ytQ');
 
-  if (!slider || !handle) return;
+  if (!slider || !handle) {
+    console.error("Slider or handle not found!");
+    return;
+  }
 
-  const minValue = parseInt(slider.getAttribute('aria-valuemin'), 10);
-  const maxValue = parseInt(slider.getAttribute('aria-valuemax'), 10);
   const sliderRect = slider.getBoundingClientRect();
-  const sliderWidth = sliderRect.width;
+  const maxX = sliderRect.right; // Rightmost position
+  const currentX = handle.getBoundingClientRect().left + handle.offsetWidth / 2;
 
-  // Clamp target time within allowed range
-  target_sec = Math.max(minValue, Math.min(target_sec, maxValue));
-
-  // Calculate target position in pixels
-  const targetX = ((target_sec - minValue) / (maxValue - minValue)) * sliderWidth + sliderRect.left;
-  let currentX = handle.getBoundingClientRect().left + handle.offsetWidth / 2;
-
-  // Function to dispatch mouse events
   function triggerEvent(element, eventType, clientX) {
     const event = new MouseEvent(eventType, {
       bubbles: true,
@@ -30,26 +23,12 @@ const tools = {
     element.dispatchEvent(event);
   }
 
-  // Simulate mousedown
+  // Simulate mouse interaction
   triggerEvent(handle, 'mousedown', currentX);
-
-  // Slowly move the handle
-  function moveStep() {
-    if (Math.abs(currentX - targetX) < 2) {
-      triggerEvent(document, 'mouseup', targetX); // Release the handle
-      return;
-    }
-
-    currentX += (targetX - currentX) * 0.2; // Move in small steps
-    triggerEvent(document, 'mousemove', currentX);
-
-    requestAnimationFrame(moveStep);
-  }
-
-  moveStep(); // Start the smooth movement
+  triggerEvent(document, 'mousemove', maxX);
+  triggerEvent(document, 'mouseup', maxX);
 },
 
-    
     turnDefaultSettingToggleOff() {
         const checkbox = document.querySelector('.toggle_toggle__qfXpL');
           if (checkbox && checkbox.checked) {
