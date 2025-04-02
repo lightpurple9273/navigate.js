@@ -1,6 +1,5 @@
 const tools = {
 
-
 moveSliderMaxSlowly() {
   const slider = document.querySelector('.styles_rangeslider__8vVg3');
   const handle = slider?.querySelector('.styles_handle__h9ytQ');
@@ -18,20 +17,20 @@ moveSliderMaxSlowly() {
   console.log("Max X (rightmost position):", maxX);
 
   // Function to trigger events
-  function triggerEvent(element, eventType, clientX) {
+  function triggerEvent(element, eventType, clientX, clientY) {
     const event = new MouseEvent(eventType, {
       bubbles: true,
       cancelable: true,
       view: window,
       clientX: clientX,
-      clientY: sliderRect.top + sliderRect.height / 2,
+      clientY: clientY,
     });
     element.dispatchEvent(event);
     console.log(`Event triggered: ${eventType} at ${clientX}`);
   }
 
-  // Simulate mousedown
-  triggerEvent(handle, 'mousedown', currentX);
+  // Simulate mousedown at the current handle position
+  triggerEvent(handle, 'mousedown', currentX, sliderRect.top + sliderRect.height / 2);
 
   // Slowly move the handle (1px per 100ms)
   let currentPos = currentX;
@@ -41,20 +40,22 @@ moveSliderMaxSlowly() {
   // Function to simulate the dragging
   function moveStep() {
     if (currentPos >= maxX) {
-      triggerEvent(document, 'mouseup', currentPos); // Release the handle
+      triggerEvent(document, 'mouseup', currentPos, sliderRect.top + sliderRect.height / 2); // Release the handle
       return;
     }
 
     currentPos += step;
-    triggerEvent(document, 'mousemove', currentPos);
+    triggerEvent(document, 'mousemove', currentPos, sliderRect.top + sliderRect.height / 2);
+
+    // Manually update the slider handle's position by adjusting its style
+    handle.style.left = `${currentPos - sliderRect.left}px`; // Set the handle position manually
 
     setTimeout(moveStep, interval); // Call moveStep every 100ms
   }
 
   moveStep(); // Start the movement
 },
-  
-  
+
 
     turnDefaultSettingToggleOff() {
         const checkbox = document.querySelector('.toggle_toggle__qfXpL');
