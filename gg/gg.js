@@ -30,7 +30,7 @@ moveSliderMaxSlowly() {
   }
 
   // Simulate mousedown at the current handle position
-  triggerEvent(handle, 'mousedown', currentX, sliderRect.top + sliderRect.height / 2);
+  triggerEvent(slider, 'mousedown', currentX, sliderRect.top + sliderRect.height / 2);
 
   // Slowly move the handle (1px per 100ms)
   let currentPos = currentX;
