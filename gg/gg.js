@@ -1,12 +1,20 @@
 const tools = {
-setCheckboxStatus(checkboxSelector, status) {
+setCheckbox(checkboxSelector, targetStatus) {
   const checkbox = document.querySelector(checkboxSelector);
+
   if (checkbox) {
-    checkbox.checked = status; // Sets the checkbox status (true for checked, false for unchecked)
+    // Get the current status of the checkbox
+    const currentStatus = checkbox.checked;
+
+    // Only click if the current status is different from the target status
+    if (currentStatus !== targetStatus) {
+      checkbox.click();
+    }
   } else {
     console.error('Checkbox not found');
   }
 },
+
 
 setSlider(sliderProportion) {
   const slider = document.querySelector('.styles_rangeslider__8vVg3');
