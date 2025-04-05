@@ -1,4 +1,12 @@
 const tools = {
+setCheckboxStatus(checkboxSelector, status) {
+  const checkbox = document.querySelector(checkboxSelector);
+  if (checkbox) {
+    checkbox.checked = status; // Sets the checkbox status (true for checked, false for unchecked)
+  } else {
+    console.error('Checkbox not found');
+  }
+},
 
 setSlider(sliderProportion) {
   const slider = document.querySelector('.styles_rangeslider__8vVg3');
