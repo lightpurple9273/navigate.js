@@ -30,30 +30,35 @@ moveSliderMaxSlowly() {
   }
 
   // Simulate mousedown at the current handle position
-  triggerEvent(slider, 'mousedown', currentX, sliderRect.top + sliderRect.height / 2);
+  //triggerEvent(slider, 'mousedown', currentX, sliderRect.top + sliderRect.height / 2);
+  triggerEvent(slider, 'mousedown', maxX, sliderRect.top + sliderRect.height / 2);
+setTimeout(() => {
+  console.log("This happens after 100ms");
+  triggerEvent(document, 'mouseup', maxX, sliderRect.top + sliderRect.height / 2); // Release the handle
+}, 100); // 100ms delay
 
   // Slowly move the handle (1px per 100ms)
-  let currentPos = currentX;
-  const step = 1; // Move 1px per step
-  const interval = 100; // 100ms per step
+  //let currentPos = currentX;
+  //const step = 1; // Move 1px per step
+  //const interval = 100; // 100ms per step
 
   // Function to simulate the dragging
-  function moveStep() {
-    if (currentPos >= maxX) {
-      triggerEvent(document, 'mouseup', currentPos, sliderRect.top + sliderRect.height / 2); // Release the handle
-      return;
-    }
+  //function moveStep() {
+  //  if (currentPos >= maxX) {
+   //   triggerEvent(document, 'mouseup', currentPos, sliderRect.top + sliderRect.height / 2); // Release the handle
+   //   return;
+    //}
 
-    currentPos += step;
-    triggerEvent(document, 'mousemove', currentPos, sliderRect.top + sliderRect.height / 2);
+    //currentPos += step;
+    //triggerEvent(document, 'mousemove', currentPos, sliderRect.top + sliderRect.height / 2);
 
     // Manually update the slider handle's position by adjusting its style
-    handle.style.left = `${currentPos - sliderRect.left}px`; // Set the handle position manually
+    //handle.style.left = `${currentPos - sliderRect.left}px`; // Set the handle position manually
 
-    setTimeout(moveStep, interval); // Call moveStep every 100ms
-  }
+    //setTimeout(moveStep, interval); // Call moveStep every 100ms
+  //}
 
-  moveStep(); // Start the movement
+  //moveStep(); // Start the movement
 },
 
 
