@@ -17,7 +17,7 @@ const tools = {
     if (currentStatus !== targetStatus) {
       //checkbox.click();
       const clickTarget = document.querySelector(clickTargetSelector);
-        clickElement(clickTarget);
+        this.clickElement(clickTarget);
     }
   } else {
     console.error('Checkbox not found');
