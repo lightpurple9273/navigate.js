@@ -1,5 +1,12 @@
 const tools = {
-setCheckbox(checkboxSelector, targetStatus, clickTargetSelector) {
+
+  setMove(targetStatus){
+
+  setCheckbox("toggle_toggle__qfXpL",targetStatus,"game-options_optionIcon__j8krV")
+    
+  },
+  
+  setCheckbox(checkboxSelector, targetStatus, clickTargetSelector) {
   const checkbox = document.querySelector(checkboxSelector);
 
   if (checkbox) {
