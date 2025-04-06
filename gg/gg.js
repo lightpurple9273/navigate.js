@@ -1,5 +1,5 @@
 const tools = {
-setCheckbox(checkboxSelector, targetStatus) {
+setCheckbox(checkboxSelector, targetStatus, clickTargetSelector) {
   const checkbox = document.querySelector(checkboxSelector);
 
   if (checkbox) {
@@ -8,7 +8,9 @@ setCheckbox(checkboxSelector, targetStatus) {
 
     // Only click if the current status is different from the target status
     if (currentStatus !== targetStatus) {
-      checkbox.click();
+      //checkbox.click();
+      const clickTarget = document.querySelector(clickTargetSelector);
+        clickElement(clickTarget);
     }
   } else {
     console.error('Checkbox not found');
@@ -24,8 +26,18 @@ setSlider(sliderProportion) {
   const minX = sliderRect.left; // Leftmost position
   const targetX = minX + ( maxX - minX ) * sliderProportion
 
+  // Simulate mousedown at the current handle position
+  triggerEvent(slider, 'mousedown', targetX, sliderRect.top + sliderRect.height / 2);
+  setTimeout(() => {
+    console.log("This happens after 100ms");
+    triggerEvent(document, 'mouseup', maxX, sliderRect.top + sliderRect.height / 2); // Release the handle
+  }, 100); // 100ms delay
+
+  },
+
+  
   // Function to trigger events
-  function triggerEvent(element, eventType, clientX, clientY) {
+  triggerEvent(element, eventType, clientX, clientY) {
     const event = new MouseEvent(eventType, {
       bubbles: true,
       cancelable: true,
@@ -35,16 +47,24 @@ setSlider(sliderProportion) {
     });
     element.dispatchEvent(event);
     console.log(`Event triggered: ${eventType} at ${clientX}`);
-  }
+  },
 
-  // Simulate mousedown at the current handle position
-  triggerEvent(slider, 'mousedown', targetX, sliderRect.top + sliderRect.height / 2);
+  // Function to simulate clicking on an element
+clickElement(element) {
+  const rect = element.getBoundingClientRect();
+  const clientX = rect.left + rect.width / 2;  // Get the center of the element
+  const clientY = rect.top + rect.height / 2;  // Get the center of the element
+
+  // Trigger a click event at the center of the element
+  triggerEvent(element, 'mousedown', clientX, clientY);
+  //triggerEvent(element, 'mouseup', clientX, clientY);
+  //triggerEvent(element, 'click', clientX, clientY);  // Optional: you can dispatch a 'click' event as well
   setTimeout(() => {
-    console.log("This happens after 100ms");
-    triggerEvent(document, 'mouseup', maxX, sliderRect.top + sliderRect.height / 2); // Release the handle
+    //console.log("This happens after 100ms");
+    triggerEvent(document, 'mouseup', clientX, clientY); // Release the handle
   }, 100); // 100ms delay
 
-  },
+},
 
 
     turnDefaultSettingToggleOff() {
