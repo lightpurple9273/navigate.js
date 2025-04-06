@@ -2,7 +2,7 @@ const tools = {
 
   setMove(targetStatus){
 
-  setCheckbox("toggle_toggle__qfXpL",targetStatus,"game-options_optionIcon__j8krV")
+  this.setCheckbox("toggle_toggle__qfXpL",targetStatus,"game-options_optionIcon__j8krV")
     
   },
   
