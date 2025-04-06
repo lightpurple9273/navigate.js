@@ -2,7 +2,9 @@ const tools = {
 
   setMove(targetStatus){
 
-  this.setCheckbox("toggle_toggle__qfXpL",targetStatus,"game-options_optionIcon__j8krV")
+  //this.setCheckbox("toggle_toggle__qfXpL",targetStatus,"game-options_optionIcon__j8krV")
+
+  // wait,,, this checkbox isnt being used is it...
     
   },
   
