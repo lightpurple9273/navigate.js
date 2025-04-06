@@ -34,10 +34,10 @@ setSlider(sliderProportion) {
   const targetX = minX + ( maxX - minX ) * sliderProportion
 
   // Simulate mousedown at the current handle position
-  triggerEvent(slider, 'mousedown', targetX, sliderRect.top + sliderRect.height / 2);
+  this.triggerEvent(slider, 'mousedown', targetX, sliderRect.top + sliderRect.height / 2);
   setTimeout(() => {
     console.log("This happens after 100ms");
-    triggerEvent(document, 'mouseup', maxX, sliderRect.top + sliderRect.height / 2); // Release the handle
+    this.triggerEvent(document, 'mouseup', maxX, sliderRect.top + sliderRect.height / 2); // Release the handle
   }, 100); // 100ms delay
 
   },
